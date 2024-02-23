@@ -1,0 +1,58 @@
+﻿@model CreditApplicationMVCProject.Models.CreditApplication
+<div>
+<h2>Update Credit Application</h2>
+<hr/>
+@using (Html.BeginForm("UpdateCreditApplication", "Credit", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <!-- Display the ApplicationId -->
+   @*  <div class="form-group">
+        <label asp-for="ApplicationID" class="control-label"></label>
+        <div>
+            @Model.ApplicationID
+        </div>
+    </div> *@
+   @*  <div class="form-group">
+        @Html.HiddenFor(model => model.ApplicationId) <!-- Add this line -->
+        @Html.LabelFor(model => model.ApplicationId)
+        @Html.TextBoxFor(model => model.ApplicationId, new { @class = "form-control" })
+    </div> *@
+        <div class="form-group">
+            @Html.HiddenFor(model => model.ApplicationID)
+            <label asp-for="ApplicationID" class="control-label"></label>
+            <div>
+                @Model.ApplicationID
+            </div>
+        </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerId)
+        @Html.TextBoxFor(model => model.CustomerId, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RequestedAmount)
+        @Html.TextBoxFor(model => model.RequestedAmount, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PurposeID)
+        @Html.TextBoxFor(model => model.PurposeID, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApplicationDate)
+        @Html.TextBoxFor(model => model.ApplicationDate, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StatusID)
+        @Html.TextBoxFor(model => model.StatusID, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+}
+</div>
+<p>
+    @Html.ActionLink("Back to List", "FetchAllCreditApplicationList")
+</p>
+

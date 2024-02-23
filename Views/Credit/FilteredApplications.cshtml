@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CreditApplicationMVCProject.Models.CreditApplication>
+
+@{
+	ViewBag.Title = "Filtered Credit Applications";
+}
+
+<h2>Filter Credit Applications by Status</h2>
+@using (Html.BeginForm("FilterByStatus", "Credit", FormMethod.Get))
+{
+	<div class="form-group">
+		@Html.Label("Credit Application Status:", null, new { @class = "control-label" })
+		@Html.TextBox("creditApplicationStatus", ViewData["CreditApplicationStatus"] as string, new { @class = "form-control" })
+	</div>
+
+	<button type="submit" class="btn btn-primary">Filter Credit Applications</button>
+}
+<hr/>
+
+@if (Model.Any())
+{
+	<table class="table table-striped table-dark">
+		<thead>
+			<p>1-Pending, 2-Approved, 3-denied, 4-Processing, 5-Closed</p>
+			<tr>
+				<th>ApplicationID</th>
+				<th>CustomerID</th>
+				<th>Requested Amount</th>
+				<th>Purpose</th>
+				<th>Application Date</th>
+				<th>Credit Application Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var application in Model)
+			{
+				<tr>
+					<td>@application.ApplicationID</td>
+					<td>@application.CustomerId</td>
+					<td>@application.RequestedAmount</td>
+					<td>@application.PurposeID</td>
+					<td>@application.ApplicationDate</td>
+					<td>@application.StatusID</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No records found in the database!!</p>
+}

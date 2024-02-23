@@ -1,0 +1,64 @@
+﻿@model CreditApplicationMVCProject.Models.CreditApplication
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Application</title>
+</head>
+<body>
+
+    <h2>Create New Application</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="Create" asp-controller="Credit" method="post">
+        <div>
+            <label asp-for="CustomerId">Customer ID:</label>
+            <input asp-for="CustomerId" class="form-control" required />
+            <span asp-validation-for="CustomerId" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="RequestedAmount">Requested Amount:</label>
+            <input asp-for="RequestedAmount" class="form-control" required />
+            <span asp-validation-for="RequestedAmount" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="PurposeID">Purpose:</label>
+            <select asp-for="PurposeID" asp-items="@(new SelectList(ViewBag.Purposes, "PurposeID", "PurposeName"))" class="form-control" required>
+                <option value="">Select Purpose</option>
+            </select>
+            <span asp-validation-for="PurposeID" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="ApplicationDate">Application Date:</label>
+            <input asp-for="ApplicationDate" type="date" class="form-control" required />
+            <span asp-validation-for="ApplicationDate" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="StatusID">Status:</label>
+            <select asp-for="StatusID" asp-items="@(new SelectList(ViewBag.Statuses, "StatusID", "StatusName"))" class="form-control" required>
+                <option value="">Select Status</option>
+            </select>
+            <span asp-validation-for="StatusID" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+    </form>
+
+</body>
+</html>

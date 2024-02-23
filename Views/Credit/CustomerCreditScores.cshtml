@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CreditApplicationMVCProject.Models.FinancialInformation>
+
+<h2>Customer Credit Scores</h2>
+@* Controller methods name , controller name*@
+@using (Html.BeginForm("DisplayCustomerCreditScore", "Credit", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="monthlyIncome">Monthly Income:</label>
+        <input type="text" name="monthlyIncome" class="form-control" />
+
+        <label for="expenses">Expenses:</label>
+        <input type="text" name="expenses" class="form-control" />
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+}
+
+@{
+    var monthlyIncome = Context.Request.Query["monthlyIncome"];
+    var expenses = Context.Request.Query["expenses"];
+}
+
+@if (!string.IsNullOrEmpty(monthlyIncome))
+{
+    <p>Monthly Income: @monthlyIncome</p>
+}
+
+@if (!string.IsNullOrEmpty(expenses))
+{
+    <p>Expenses: @expenses</p>
+}
+
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>FinancialInformationID</th>
+                <th>Customer ID</th>
+                <th>MonthlyIncome</th>
+                <th>Expenses</th>
+                <th>EmploymentStatus</th>
+                <th>CreditScore</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FinancialInformationId</td>
+                    <td>@item.CustomerId</td>
+                    <td>@item.MonthlyIncome</td>
+                    <td>@item.Expenses</td>
+                    <td>@item.EmploymentStatusID</td>
+                    <td class="table-success">@item.CreditScore</td>
+                    <td>@item.Weight</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No records found in the database!!</p>
+}

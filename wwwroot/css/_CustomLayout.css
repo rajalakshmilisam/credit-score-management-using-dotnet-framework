@@ -1,0 +1,78 @@
+﻿/* _CustomLayout.css */
+
+body {
+    background-image: url('../images/bg.jpg'); /* Replace with the path to your image */
+    background-size: cover; /* Cover the entire body with the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    margin: 0;
+}
+
+header, footer {
+    padding: 10px;
+}
+
+header {
+    color: #ffffff;
+}
+
+#sidebar {
+    position: fixed;
+    background-image: url("../images//image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    top: 0px;
+    left: 0;
+    height: 400vh;
+    width: 230px;
+    padding-top: 30px;
+    background-color: mediumaquamarine;
+    color: lavenderblush;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+    #sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #sidebar a {
+        display: block;
+        padding: 20px;
+        text-decoration: solid;
+        /*        background-color: lightsteelblue;
+*/ color: darkblue;
+        transition: background-color 0.3s;
+    }
+
+        #sidebar a:hover {
+            background-color: darkslategray;
+        }
+
+main {
+    margin-left: 230px;
+    margin-top: 10px;
+    transition: margin-left 0.3s;
+    width: calc(100% - 230px);
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -230px;
+    }
+
+    main {
+        margin-left: 20px;
+    }
+}
+
+footer {
+    padding: 10px;
+    background-color: #343a40;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

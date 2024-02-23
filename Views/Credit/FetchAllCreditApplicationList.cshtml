@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CreditApplicationMVCProject.Models.CreditApplication>
+
+@{
+	ViewBag.Title = "Display All Applications";
+}
+
+<h2>Display All Applications</h2>
+
+@if (Model.Any())
+{
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Application ID</th>
+				<th>Customer ID</th>
+				<th>Requested Amount</th>
+				<th>Purpose</th>
+				<th>Application Date</th>
+				<th>Credit Application Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var application in Model)
+			{
+				<tr>
+					<td>@application.ApplicationID</td>
+					<td>@application.CustomerId</td>
+					<td>@application.RequestedAmount</td>
+					<td>@application.PurposeID</td>
+					<td>@application.ApplicationDate</td>
+					<td>@application.StatusID</td>
+					<td>
+						<!-- Edit Button -->
+						<a href="@Url.Action("UpdateCreditApplication", "Credit", new { id = application.ApplicationID })" class="btn btn-primary">Edit</a>
+@* 						<a asp-controller="Credit" asp-action="UpdateCreditApplication" asp-route-applicationId="@application.ApplicationId" class="btn btn-secondary">Edit</a>
+ *@
+						<!-- View Button -->
+						<a asp-controller="Credit" asp-action="FindByApplicationId" asp-route-applicationId="@application.ApplicationID" class="btn btn-info">View</a>
+
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No applications found.</p>
+}

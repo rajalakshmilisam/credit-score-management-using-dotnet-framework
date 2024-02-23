@@ -1,0 +1,46 @@
+﻿@model CreditApplicationMVCProject.Models.CreditApplication
+
+<h2>Credit Application Details</h2>
+
+<div>
+    <h3>Application ID: @Model.ApplicationID</h3>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerId)
+        <div>
+            @Model.CustomerId
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RequestedAmount)
+        <div>
+            @Model.RequestedAmount
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PurposeMasters)
+        <div>
+            @Model.PurposeID
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApplicationDate)
+        <div>
+            @Model.ApplicationDate
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreditApplicationStatusMasters)
+        <div>
+            @Model.StatusID
+        </div>
+    </div>
+
+    <!-- Add other fields as needed -->
+
+    <a asp-controller="Credit" asp-action="FetchAllCreditApplicationList" class="btn btn-info">Back to List</a>
+</div>

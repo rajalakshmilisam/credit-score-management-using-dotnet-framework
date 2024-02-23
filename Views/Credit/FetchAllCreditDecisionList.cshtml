@@ -1,0 +1,36 @@
+﻿<!-- Views/CreditDecision/Index.cshtml -->
+@model List<CreditDecision>
+
+@{
+    ViewData["Title"] = "Credit Decisions";
+}
+
+<h2>Credit Decisions</h2>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>Decision ID</th>
+            <th>Application ID</th>
+            <th>Decision</th>
+            <th>Decision Date</th>
+            <th>Decision Details</th>
+@*             <th>Actions</th>
+ *@        </tr>
+    </thead>
+    <tbody>
+        @foreach (var decision in Model)
+        {
+            <tr>
+                <td>@decision.DecisionId</td>
+                <td>@decision.ApplicationId</td>
+                <td>@decision.Decision</td>
+                <td>@decision.DecisionDate</td>
+                <td>@decision.DecisionDetails</td>
+          @*       <td>
+                    <a href="@Url.Action("ViewDecisionByID","Credit",new {id=decision.DecisionId})" class="btn btn-info">View</a>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>

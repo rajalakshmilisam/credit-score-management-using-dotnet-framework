@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CreditApplicationMVCProject.Models.Customer>
+
+<h2>Customers with their Financial Statement</h2>
+<h6>We can view the customers with their financial statement here!!</h6>
+@foreach (var customer in Model)
+{
+    <h4>Customer ID: @customer.CustomerId</h4>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Monthly Income</th>
+                <th>Expenses</th>
+                <th>Employment Status</th>
+                <th>WeightageOfProperty</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var financialInfo in customer.FinancialInformations)
+            {
+                <tr>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@financialInfo.MonthlyIncome</td>
+                    <td>@financialInfo.Expenses</td>
+                    <td>@financialInfo.EmploymentStatusID</td>
+                    <td>@financialInfo.Weight</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

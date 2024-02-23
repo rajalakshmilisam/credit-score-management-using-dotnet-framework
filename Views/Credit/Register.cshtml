@@ -1,0 +1,103 @@
+﻿@model CreditApplicationMVCProject.Models.User
+
+@{
+    Layout = "~/Views/Shared/Custom_Register_Layout.cshtml";
+}
+
+<h2>Register</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        @using (Html.BeginForm("Register", "Credit", FormMethod.Post, new { id = "registerForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewPassword"></label>
+                <input asp-for="NewPassword" type="password" class="form-control" />
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Add simple validation for register form
+        $("#registerForm").submit(function (event) {
+            var username = $("#Username").val();
+            var password = $("#NewPassword").val();
+            var confirmPassword = $("#ConfirmPassword").val();
+            var email = $("#Email").val();
+
+            // Check each field separately and display specific error messages
+            if (!username) {
+                displayErrorMessage("Username is required.", "Username");
+                event.preventDefault();
+                return;
+            }
+
+            if (!password) {
+                displayErrorMessage("Password is required.", "NewPassword");
+                event.preventDefault();
+                return;
+            }
+
+            if (!confirmPassword) {
+                displayErrorMessage("Confirm Password is required.", "ConfirmPassword");
+                event.preventDefault();
+                return;
+            }
+
+            if (!email) {
+                displayErrorMessage("Email is required.", "Email");
+                event.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                displayErrorMessage("Password and confirmation password do not match.", "ConfirmPassword");
+                event.preventDefault();
+            }
+        });
+
+        function displayErrorMessage(message, fieldId) {
+            // Remove any existing error message for the specific field
+            $("#" + fieldId + "Error").remove();
+
+            // Create and append the error message div
+            var errorDiv = $("<div id='" + fieldId + "Error' class='alert alert-danger' role='alert'></div>");
+            errorDiv.text(message);
+            $("#" + fieldId).closest(".form-group").append(errorDiv);
+
+            // Remove the error message after 5 seconds (adjust the timeout as needed)
+            setTimeout(function () {
+                errorDiv.slideUp(500, function () {
+                    errorDiv.remove();
+                });
+            }, 5000);
+        }
+    });
+</script>
+
